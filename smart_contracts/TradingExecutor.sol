@@ -26,13 +26,13 @@ contract TradingExecutor is ChainlinkClient {
      tradingToken = IERC20(_tradingToken);
 
      setPublicChainlinkToken();
-     jobId = "your_chainlink_job_id";
+     jobId = "<chainlink_job_i>d"; // Yet to get these details
      fee = 0.1 * 10 ** 18; // 0.1 LINK
  }
 
  function requestPricePrediction() public {
      Chainlink.Request memory req = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
-     req.add("get", "http://your-api-endpoint.com/predict");
+     req.add("get", "http://api-endpoint.com/predict"); // Need to generate them - in progress
      req.add("path", "price");
      sendChainlinkRequestTo(chainlinkOracleAddress(), req, fee);
  }
